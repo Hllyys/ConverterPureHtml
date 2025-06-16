@@ -7,6 +7,7 @@ func ExtractConfig(sel *goquery.Selection, fields map[string]FieldConfig) map[st
 
 	for key, field := range fields {
 		switch field.Type {
+
 		case "primitive":
 			result[key] = ExtractPrimitive(field, sel)
 		case "array":

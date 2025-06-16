@@ -6,11 +6,9 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-// Bu fonksiyon temel değerleri (string/text, attribute, simple value) çıkarır ve varsa transform uygular.
 func ExtractPrimitive(field FieldConfig, sel *goquery.Selection) interface{} {
-
-	config := ConfigWithSelector{Selector: field.Selector}
-	selected := config.GetFirstMatch(sel, false)
+	base := BaseExtractor{Selector: field.Selector}
+	selected := base.ApplySelector(sel).First()
 
 	if selected == nil {
 		return nil

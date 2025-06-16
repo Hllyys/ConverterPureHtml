@@ -6,9 +6,8 @@ import (
 
 func ExtractArray(field FieldConfig, sel *goquery.Selection) interface{} {
 	var results []interface{}
-
-	config := ConfigWithSelector{Selector: field.Selector}
-	matches := config.GetAllMatches(sel, false)
+	base := BaseExtractor{Selector: field.Selector}
+	matches := base.ApplySelector(sel)
 
 	if matches.Length() == 0 {
 		return results
